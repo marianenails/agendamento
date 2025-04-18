@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agendamento</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Agende seu Horário</h1>
+    <h3>@Mariane_Nails</h3>
+    <p>(18) 99680-3239</p>
+
+    <div id="inicio" class="fade">
+      <button onclick="mostrarEtapa1()">Comece a Agendar</button>
+    </div>
+
+    <div id="etapa1" class="fade hidden">
+      <form id="formServicos">
+        <h2>Alongamento fibra de vidro</h2>
+        <div class="opcoes-servico">
+          <label><input type="checkbox" name="servico[]" value="Colocação - 100,00">Colocação - R$100</label>
+          <label><input type="checkbox" name="servico[]" value="Manutenção - 70,00">Manutenção - R$70</label>
+        </div>
+
+        <h2>Outros Serviços</h2>
+        <div class="opcoes-servico">
+          <label><input type="checkbox" name="servico[]" value="Remoção - 30,00">Remoção - R$30</label>
+          <label><input type="checkbox" name="servico[]" value="Banho de gel + Manutenção - 60,00">Banho de Gel + Manutenção - R$60</label>
+          <label><input type="checkbox" name="servico[]" value="Esmaltação em gel - 50,00">Esmaltação em Gel - R$50</label>
+          <label><input type="checkbox" name="servico[]" value="Blindagem - 50,00">Blindagem - R$50</label>
+        </div>
+
+        <button type="button" onclick="proximaEtapa()">Continuar</button>
+      </form>
+    </div>
+
+    <div id="etapa2" class="fade hidden">
+      <form class="form-agendamento" action="https://formsubmit.co/brgamez5671.9@gmail.com" method="post">
+        <div id="servicosSelecionados"></div>
+
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="numero">WhatsApp</label>
+        <input type="tel" id="numero" name="numero" required placeholder="(xx) xxxxx-xxxx" />
+
+        <label for="data">Data</label>
+        <input type="date" id="data" name="data" required />
+
+        <label for="hora">Hora</label>
+        <input type="time" id="hora" name="hora" required />
+
+        <button type="submit">Agendar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function mostrarEtapa1() {
+      document.getElementById("inicio").classList.add("hidden");
+      document.getElementById("etapa1").classList.remove("hidden");
+    }
+
+    function proximaEtapa() {
+      const servicos = document.querySelectorAll('input[name="servico[]"]:checked');
+      if (servicos.length === 0) {
+        alert("Selecione pelo menos um serviço.");
+        return;
+      }
+
+      let servicosSelecionados = "";
+      servicos.forEach(item => {
+        servicosSelecionados += `
+          <input type="hidden" name="servico[]" value="${item.value}">
+          <p><strong>${item.value}</strong></p>
+        `;
+      });
+
+      document.getElementById("servicosSelecionados").innerHTML = servicosSelecionados;
+      document.getElementById("etapa1").classList.add("hidden");
+      document.getElementById("etapa2").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
