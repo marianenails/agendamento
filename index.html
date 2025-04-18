@@ -4,55 +4,141 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Agendamento</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffe0f0, #fbeeff);
+      color: #444;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h3 {
+      text-align: center;
+      color: #d63384;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #c2185b;
+    }
+
+    .opcoes-servico label {
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+      background: #fff0f6;
+      border: 1px solid #ffcde3;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="time"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff85c1;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #servicosSelecionados p {
+      background: #fce4ec;
+      padding: 8px;
+      border-radius: 6px;
+      margin: 5px 0;
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Agende seu Horário</h1>
+    <h1>💅 Agende seu Horário</h1>
     <h3>@Mariane_Nails</h3>
-    <p>(18) 99680-3239</p>
+    <p style="text-align: center;">📱 (18) 99127-8007</p>
 
-    <div id="inicio" class="fade">
-      <button onclick="mostrarEtapa1()">Comece a Agendar</button>
+    <div id="inicio">
+      <button onclick="mostrarEtapa1()">✨ Comece a Agendar</button>
     </div>
 
-    <div id="etapa1" class="fade hidden">
+    <div id="etapa1" class="hidden">
       <form id="formServicos">
-        <h2>Alongamento fibra de vidro</h2>
+        <h2>💖 Alongamento Fibra de Vidro</h2>
         <div class="opcoes-servico">
-          <label><input type="checkbox" name="servico[]" value="Colocação - 100,00">Colocação - R$100</label>
-          <label><input type="checkbox" name="servico[]" value="Manutenção - 70,00">Manutenção - R$70</label>
+          <label><input type="checkbox" name="servico[]" value="Colocação - R$100" data-preco="100"> Colocação - R$100</label>
+          <label><input type="checkbox" name="servico[]" value="Manutenção - R$70" data-preco="70"> Manutenção - R$70</label>
         </div>
 
-        <h2>Outros Serviços</h2>
+        <h2>🎀 Outros Serviços</h2>
         <div class="opcoes-servico">
-          <label><input type="checkbox" name="servico[]" value="Remoção - 30,00">Remoção - R$30</label>
-          <label><input type="checkbox" name="servico[]" value="Banho de gel + Manutenção - 60,00">Banho de Gel + Manutenção - R$60</label>
-          <label><input type="checkbox" name="servico[]" value="Esmaltação em gel - 50,00">Esmaltação em Gel - R$50</label>
-          <label><input type="checkbox" name="servico[]" value="Blindagem - 50,00">Blindagem - R$50</label>
+          <label><input type="checkbox" name="servico[]" value="Remoção - R$30" data-preco="30"> Remoção - R$30</label>
+          <label><input type="checkbox" name="servico[]" value="Banho de Gel + Manutenção - R$60" data-preco="60"> Banho de Gel + Manutenção - R$60</label>
+          <label><input type="checkbox" name="servico[]" value="Esmaltação em Gel - R$50" data-preco="50"> Esmaltação em Gel - R$50</label>
+          <label><input type="checkbox" name="servico[]" value="Blindagem - R$50" data-preco="50"> Blindagem - R$50</label>
         </div>
 
-        <button type="button" onclick="proximaEtapa()">Continuar</button>
+        <button type="button" onclick="proximaEtapa()">Avançar ➡️</button>
       </form>
     </div>
 
-    <div id="etapa2" class="fade hidden">
-      <form class="form-agendamento" action="https://formsubmit.co/silvamary9738@gmail.com" method="post">
+    <div id="etapa2" class="hidden">
+      <form class="form-agendamento" action="https://formsubmit.co/silvamary9738@gmail.com" method="POST">
         <div id="servicosSelecionados"></div>
 
-        <label for="nome">Nome</label>
+        <label for="nome">👩 Seu Nome</label>
         <input type="text" id="nome" name="nome" required />
 
-        <label for="numero">WhatsApp</label>
+        <label for="numero">📲 WhatsApp</label>
         <input type="tel" id="numero" name="numero" required placeholder="(xx) xxxxx-xxxx" />
 
-        <label for="data">Data</label>
+        <label for="data">📆 Data</label>
         <input type="date" id="data" name="data" required />
 
-        <label for="hora">Hora</label>
+        <label for="hora">⏰ Hora</label>
         <input type="time" id="hora" name="hora" required />
 
-        <button type="submit">Agendar</button>
+        <button type="button" onclick="enviarParaAmbos()">📤 Enviar Agora</button>
       </form>
     </div>
   </div>
@@ -71,16 +157,54 @@
       }
 
       let servicosSelecionados = "";
+
       servicos.forEach(item => {
         servicosSelecionados += `
           <input type="hidden" name="servico[]" value="${item.value}">
-          <p><strong>${item.value}</strong></p>
+          <p><strong>${item.value.split(" - ")[0]}</strong> - ${item.value.split(" - ")[1]}</p>
         `;
       });
 
       document.getElementById("servicosSelecionados").innerHTML = servicosSelecionados;
+
       document.getElementById("etapa1").classList.add("hidden");
       document.getElementById("etapa2").classList.remove("hidden");
+    }
+
+    function enviarParaAmbos() {
+      const nome = document.getElementById("nome").value.trim();
+      const numero = document.getElementById("numero").value.trim();
+      const data = document.getElementById("data").value;
+      const hora = document.getElementById("hora").value;
+
+      const servicosSelecionados = Array.from(
+        document.querySelectorAll('#servicosSelecionados input[name="servico[]"]')
+      ).map(input => `- ${input.value.split(" - ")[0]}`); // Mostra só o nome do serviço
+
+      // Verificação de campos obrigatórios
+      if (!nome || !numero || !data || !hora || servicosSelecionados.length === 0) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      const dataFormatada = data.split("-").reverse().join("/");
+
+      const mensagemWhatsApp =
+        `*💅 Agendamento Confirmado*\n\n` +
+        `*👩 Nome:* ${nome}\n` +
+        `*📲 WhatsApp:* ${numero}\n\n` +
+        `*💅 Serviços Selecionados:*\n${servicosSelecionados.join("\n")}\n\n` +
+        `*📆 Data:* ${dataFormatada}\n` +
+        `*⏰ Hora:* ${hora}`;
+
+      // Enviar para WhatsApp
+      const numeroDestino = "5518991278007"; // Número atualizado
+      const urlWhatsApp = `https://wa.me/${numeroDestino}?text=${encodeURIComponent(mensagemWhatsApp)}`;
+      window.open(urlWhatsApp, "_blank");
+
+      // Enviar para E-mail
+      const form = document.querySelector('.form-agendamento');
+      form.submit();
     }
   </script>
 </body>
